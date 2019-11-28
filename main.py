@@ -93,11 +93,18 @@ def main():
     # While loop to roll the dice until one player scores ABOVE 99.
     while max(players_positions) <= 99:
 
+        # A for loop to roll the dice twice once per player
         for x in range(0, 2):
 
-            players_positions[x] = roll_dice(current_position=players_positions[x], player_name=player_names[x])
+            # An if-else statement to add a new line before first roll.
+            if x == 0:
+                players_positions[x] = roll_dice(current_position=players_positions[x],
+                                                 player_name='\n' + player_names[x])
+            else:
+                players_positions[x] = roll_dice(current_position=players_positions[x],
+                                                 player_name=player_names[x])
 
-            # An if statement to check if
+            # An if statement to check if player has won
             if players_positions[x] > 99:
                 print("Hurray ! Winner is %s" % (player_names[x]))
                 break
